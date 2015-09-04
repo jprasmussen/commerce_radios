@@ -1,0 +1,5 @@
+name = Commerce Radio Buttons
+description = Replaces the select lists with radio lists.
+package = Commerce (contrib)
+dependencies[] = commerce_product
+core = 7.x

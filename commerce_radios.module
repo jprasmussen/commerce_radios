@@ -1,0 +1,19 @@
+<?php
+
+
+function commerce_radios_form_alter(&$form, $form_state, $form_id) {
+  if (strpos($form_id, 'commerce_cart_add_to_cart_form_') === 0 && isset($form['product_id'])) {
+    // Sanitization of select options will occur in a check_plain() in
+    // the function form_select_options(). We change this element to
+    // another #type, 'radios', and hence we are also responsible for looping
+    // over its #options array and sanitizing the values.
+    if(isset($form['product_id']['#options'])) {
+        foreach ($form['product_id']['#options'] as $key => $value) {
+          $form['product_id']['#options'][$key] = check_plain($value);
+      }
+    // Change element to #type radios.
+      $form['product_id']['#type'] = "radios";    
+  }
+}
+}
+
